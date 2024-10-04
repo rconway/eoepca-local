@@ -1,0 +1,15 @@
+cluster_name: rconway
+
+nodes:
+  - address: 100.114.182.22
+    user: rconway
+    role:
+      - controlplane
+      - etcd
+      - worker
+
+ingress:
+  provider: nginx
+  network_mode: hostPort
+  http_port: 31080
+  https_port: 31443

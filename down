@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+ORIG_DIR="$(pwd)"
+cd "$(dirname "$0")"
+BIN_DIR="$(pwd)"
+
+trap "cd '${ORIG_DIR}'" EXIT
+
+rke remove --ignore-docker-version
+
+docker rm -f cluster-state-deployer $(docker ps -a --filter "name=k8s_" -q)
