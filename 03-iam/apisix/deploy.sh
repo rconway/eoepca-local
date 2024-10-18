@@ -11,13 +11,7 @@ trap onExit EXIT
 
 ACTION="${1:-apply}"
 
-if [ "${ACTION}" = "apply" ]; then
-  helm upgrade --install apisix apisix \
-    --repo https://charts.apiseven.com \
-    --version 2.9.0 \
-    --namespace iam \
-    --create-namespace \
-    -f values.yaml
-else
-  helm -n iam uninstall apisix
-fi
+kubectl kustomize \
+  --enable-helm \
+  --helm-kube-version $(kubectl version -o json 2>/dev/null | jq -r '.serverVersion.gitVersion') \
+  | kubectl ${ACTION} -f -
