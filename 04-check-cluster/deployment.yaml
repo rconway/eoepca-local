@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
-  namespace: rconway
+  name: check-cluster
+  namespace: check-cluster
   labels:
-    app: nginx
+    app: check-cluster
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app: check-cluster
   template:
     metadata:
       labels:
-        app: nginx
+        app: check-cluster
     spec:
       containers:
         - name: nginx

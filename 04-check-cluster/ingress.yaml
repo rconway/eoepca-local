@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: check-cluster
+  namespace: check-cluster
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  ingressClassName: apisix
+  rules:
+    - host: check-cluster.kube.svc.rconway.uk
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: check-cluster
+                port:
+                  name: http
+  tls:
+    - hosts:
+        - check-cluster.kube.svc.rconway.uk
+      secretName: check-cluster-tls
