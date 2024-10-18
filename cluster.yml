@@ -9,7 +9,8 @@ nodes:
       - worker
 
 ingress:
-  provider: nginx
-  network_mode: hostPort
-  http_port: 31080
-  https_port: 31443
+  provider: none
+  # provider: nginx
+  # network_mode: hostPort
+  # http_port: 31080
+  # https_port: 31443
