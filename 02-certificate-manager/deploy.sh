@@ -20,7 +20,6 @@ if [ "${ACTION}" = "apply" ]; then
   kubectl -n cert-manager rollout status --watch deployment cert-manager
   kubectl -n cert-manager rollout status --watch deployment cert-manager-cainjector
   kubectl -n cert-manager rollout status --watch deployment cert-manager-webhook
-  kubectl -n ingress-nginx rollout status --watch daemonset nginx-ingress-controller
 fi
 
 let status=1
