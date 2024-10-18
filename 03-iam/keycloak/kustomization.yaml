@@ -1,0 +1,36 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - secrets
+helmCharts:
+  - name: keycloak
+    releaseName: keycloak
+    version: 21.4.4
+    repo: https://charts.bitnami.com/bitnami
+    namespace: iam
+    includeCRDs: true
+    skipTests: true
+    valuesInline:
+      global:
+        storageClass: standard
+      image:
+        registry: byud8gih.c1.de1.container-registry.ovh.net
+        repository: eoepca/keycloak-with-opa-plugin
+        tag: 0.3.1
+        # pullPolicy: Always
+      auth:
+        adminPassword: kcadmin
+        # existingSecret: ""
+      proxy: edge
+      extraEnvVars:
+        - name: KC_SPI_POLICY_OPA_OPA_BASE_URI
+          value: "http://iam-opal-opal-client:8181/v1/data/"
+        - name: KC_SPI_POLICY_OPA_OPA_POLICY_DIR
+          value: "/opt/bitnami/keycloak/conf/opa-policies"
+        - name: KC_HOSTNAME_URL
+          value: "https://iam-auth.kube.svc.rconway.uk"
+        - name: KC_HOSTNAME_ADMIN_URL
+          value: "https://iam-auth.kube.svc.rconway.uk"
+      postgresql:
+        auth:
+          existingSecret: kc-postgres

@@ -15,6 +15,3 @@ kubectl kustomize \
   --enable-helm \
   --helm-kube-version $(kubectl version -o json 2>/dev/null | jq -r '.serverVersion.gitVersion') \
   | kubectl ${ACTION} -f -
-
-./apisix/deploy.sh "${ACTION}"
-./keycloak/deploy.sh "${ACTION}"
