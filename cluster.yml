@@ -1,7 +1,7 @@
 cluster_name: rconway
 
 nodes:
-  - address: 100.114.182.22
+  - address: endvrpad
     user: rconway
     role:
       - controlplane

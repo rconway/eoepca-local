@@ -15,7 +15,7 @@ helmCharts:
         tls:
           nodePort: 31443
       ingress:
-        enabled: true
+        enabled: false
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-prod
           ingress.kubernetes.io/ssl-redirect: "true"
@@ -34,6 +34,7 @@ helmCharts:
           enabled: true
           fallbackSNI: kube.svc.rconway.uk
       etcd:
+        # replicaCount: 1
         persistence:
           storageClass: standard
           size: 8Gi

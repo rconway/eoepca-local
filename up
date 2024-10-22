@@ -6,4 +6,38 @@ BIN_DIR="$(pwd)"
 
 trap "cd '${ORIG_DIR}'" EXIT
 
-exec rke up --ignore-docker-version "$@"
+#-------------------------------------------------------------------------------
+# rke
+#-------------------------------------------------------------------------------
+
+# exec rke up --ignore-docker-version "$@"
+
+#-------------------------------------------------------------------------------
+# k3d
+#-------------------------------------------------------------------------------
+
+# Images..
+# * rancher/k3s:v1.28.7-k3s1
+# * rancher/k3s:v1.28.14-k3s1
+
+exec k3d cluster create rconway \
+  --image rancher/k3s:v1.28.7-k3s1 \
+  --k3s-arg="--disable=traefik@server:0" \
+  --servers 1 --agents 0 \
+  --port 31080:31080@loadbalancer \
+  --port 31443:31443@loadbalancer
+
+#-------------------------------------------------------------------------------
+# minikube
+#-------------------------------------------------------------------------------
+
+# MINIKUBE_CPU_AMOUNT=max
+# MINIKUBE_MEMORY_AMOUNT=32g
+# MINIKUBE_DISK_AMOUNT=300g
+# MINIKUBE_KUBERNETES_VERSION=v1.28.7
+# exec minikube start \
+#   --cpus "${MINIKUBE_CPU_AMOUNT}" \
+#   --memory "${MINIKUBE_MEMORY_AMOUNT}" \
+#   --disk-size "${MINIKUBE_DISK_AMOUNT}" \
+#   --kubernetes-version "${MINIKUBE_KUBERNETES_VERSION}" \
+#   --ports=31080:31080,31443:31443
