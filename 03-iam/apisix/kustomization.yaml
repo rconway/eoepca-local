@@ -20,19 +20,19 @@ helmCharts:
           cert-manager.io/cluster-issuer: letsencrypt-prod
           ingress.kubernetes.io/ssl-redirect: "true"
         hosts:
-          - host: apisix.kube.svc.rconway.uk
+          - host: apisix.endvrpad.rconway.uk
             paths:
               - /
         tls:
           - hosts:
-              - apisix.kube.svc.rconway.uk
+              - apisix.endvrpad.rconway.uk
             secretName: apisix-tls
       apisix:
         enableIPv6: false
         enableServerTokens: false
         ssl:
           enabled: true
-          fallbackSNI: kube.svc.rconway.uk
+          fallbackSNI: endvrpad.rconway.uk
       etcd:
         # replicaCount: 1
         persistence:

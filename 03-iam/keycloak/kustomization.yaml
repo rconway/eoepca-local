@@ -30,9 +30,9 @@ helmCharts:
         - name: KC_SPI_POLICY_OPA_OPA_POLICY_DIR
           value: "/opt/bitnami/keycloak/conf/opa-policies"
         - name: KC_HOSTNAME_URL
-          value: "https://iam-auth.kube.svc.rconway.uk"
+          value: "https://iam-auth.endvrpad.rconway.uk"
         - name: KC_HOSTNAME_ADMIN_URL
-          value: "https://iam-auth.kube.svc.rconway.uk"
+          value: "https://iam-auth.endvrpad.rconway.uk"
       postgresql:
         auth:
           existingSecret: kc-postgres

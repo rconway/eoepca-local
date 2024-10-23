@@ -6,7 +6,7 @@ metadata:
   namespace: iam
 spec:
   dnsNames:
-    - iam-auth.kube.svc.rconway.uk
+    - iam-auth.endvrpad.rconway.uk
   issuerRef:
     kind: ClusterIssuer
     name: letsencrypt-prod
@@ -24,7 +24,7 @@ metadata:
   namespace: iam
 spec:
   hosts:
-    - iam-auth.kube.svc.rconway.uk
+    - iam-auth.endvrpad.rconway.uk
   secret:
     name: keycloak-tls
     namespace: iam
@@ -39,7 +39,7 @@ spec:
     - name: keycloak
       match:
         hosts:
-          - iam-auth.kube.svc.rconway.uk
+          - iam-auth.endvrpad.rconway.uk
         paths:
           - "/*"
       backends:
