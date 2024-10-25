@@ -9,7 +9,7 @@ metadata:
 spec:
   ingressClassName: apisix
   rules:
-    - host: check-cluster.endvrpad.rconway.uk
+    - host: check-cluster.endvr5570.rconway.uk
       http:
         paths:
           - path: /
@@ -21,5 +21,5 @@ spec:
                   name: http
   tls:
     - hosts:
-        - check-cluster.endvrpad.rconway.uk
+        - check-cluster.endvr5570.rconway.uk
       secretName: check-cluster-tls
