@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - namespace.yaml
+helmCharts:
+  - name: ingress-nginx
+    releaseName: ingress-nginx
+    # version: 1.2.3
+    repo: https://kubernetes.github.io/ingress-nginx
+    namespace: ingress-nginx
+    valuesInline:
+      controller:
+        service:
+          type: NodePort
+          nodePorts:
+            http: 31080
+            https: 31443
+        ingressClassResource:
+          default: true
